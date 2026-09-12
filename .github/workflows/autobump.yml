@@ -14,7 +14,7 @@ jobs:
     runs-on: macos-latest
     steps:
       - name: Set up Homebrew
-        uses: Homebrew/actions/setup-homebrew@master
+        uses: Homebrew/actions/setup-homebrew@1f8e202ffddf94def7f42f6fa3a482e821489f9c
 
       - name: Trust Tap
         run: |
@@ -42,6 +42,8 @@ jobs:
           '
 
       - name: Commit and push changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           cd "$(brew --repository philberthfz/wine)"
           git config user.name "github-actions[bot]"
@@ -53,5 +55,6 @@ jobs:
             echo "Updates found. Staging and committing changes..."
             git add Casks/
             git commit -m "Autobump: update casks to latest upstream releases"
+            git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
             git push origin main
           fi
