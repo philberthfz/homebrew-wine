@@ -7,6 +7,9 @@ A Homebrew tap providing Wine packages (`wine-stable`, `wine@devel`, and `wine@s
 - **`wine-stable`**: Stable releases of Wine for macOS (WineHQ)
 - **`wine@devel`**: Development releases of Wine for macOS
 - **`wine@staging`**: Staging releases of Wine for macOS (includes experimental features and patches)
+- **`gstreamer-runtime`**: GStreamer multimedia framework runtime package (Wine dependency)
+- **`gstreamer-development`**: GStreamer development package
+
 
 ## Requirements
 
@@ -57,7 +60,9 @@ brew install --cask wine@staging
 
 ## Attribution & Credits
 
-- The cask definitions (`wine-stable`, `wine@devel`, and `wine@staging`) were originally authored and maintained by the [Homebrew](https://github.com/Homebrew/homebrew-cask) maintainers and community under the BSD-2-Clause license.
+- The cask definitions (`wine-stable`, `wine@devel`, `wine@staging`, `gstreamer-runtime`, and `gstreamer-development`) were originally authored and maintained by the [Homebrew](https://github.com/Homebrew/homebrew-cask) maintainers and community under the BSD-2-Clause license.
 - macOS Wine builds and release packages are provided by [Gcenx](https://github.com/Gcenx/macOS_Wine_builds) and the [WineHQ](https://wiki.winehq.org/MacOS) project.
+- macOS GStreamer official packages are provided by the [GStreamer / freedesktop.org](https://gstreamer.freedesktop.org/) project.
 - Tap configuration and re-enabling adjustments were prepared with the assistance of Gemini (Google Antigravity).
+
 
