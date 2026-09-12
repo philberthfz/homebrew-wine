@@ -1,0 +1,57 @@
+name: Bump Casks
+
+on:
+  schedule:
+    # Run every Sunday at 00:00 UTC
+    - cron: '0 0 * * 0'
+  workflow_dispatch: # Allows manual trigger from GitHub Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  bump:
+    runs-on: macos-latest
+    steps:
+      - name: Set up Homebrew
+        uses: Homebrew/actions/setup-homebrew@master
+
+      - name: Trust Tap
+        run: |
+          brew trust philberthfz/wine
+
+      - name: Check and bump outdated casks
+        run: |
+          echo "Checking for outdated casks in philberthfz/wine..."
+          brew livecheck --cask --newer --tap philberthfz/wine --json | ruby -rjson -e '
+            begin
+              entries = JSON.load($stdin) || []
+            rescue => e
+              puts "No JSON or parse error: #{e}"
+              entries = []
+            end
+
+            entries.each do |item|
+              cask = item["cask"]
+              version = item.dig("version", "latest")
+              next unless cask && version
+
+              puts "==> Updating #{cask} to #{version}..."
+              system("brew", "bump-cask-pr", "--write-only", "--no-audit", "--no-style", "--version", version, "philberthfz/wine/#{cask}")
+            end
+          '
+
+      - name: Commit and push changes
+        run: |
+          cd "$(brew --repository philberthfz/wine)"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          if git diff --quiet Casks/; then
+            echo "No cask updates detected. Working tree clean."
+          else
+            echo "Updates found. Staging and committing changes..."
+            git add Casks/
+            git commit -m "Autobump: update casks to latest upstream releases"
+            git push origin main
+          fi
