@@ -35,23 +35,23 @@ brew trust philberthfz/wine
 
 ### 2. Install Wine
 
-Choose the Wine flavor you want:
+Choose the Wine flavor you want (use the tap prefix so Homebrew doesn't pick the disabled upstream casks):
 
 ```bash
 # Stable version
-brew install --cask wine-stable
+brew install --cask philberthfz/wine/wine-stable
 
 # Development version
-brew install --cask wine@devel
+brew install --cask philberthfz/wine/wine@devel
 
 # Staging version
-brew install --cask wine@staging
+brew install --cask philberthfz/wine/wine@staging
 ```
 
 > **Note on Gatekeeper / Quarantine:**
 > Since these builds do not pass macOS Gatekeeper notarization checks, macOS may display a security prompt or block execution. If needed, you can bypass quarantine during installation:
 > ```bash
-> brew install --cask --no-quarantine wine-stable
+> brew install --cask --no-quarantine philberthfz/wine/wine-stable
 > ```
 > Or manually remove the quarantine attribute:
 > ```bash

@@ -16,7 +16,7 @@ cask "gstreamer-development" do
     regex(/gstreamer[._-]1\.0[._-]devel[._-]v?(\d+(?:\.\d+)+)[._-]universal\.pkg/i)
   end
 
-  depends_on cask: "gstreamer-runtime"
+  depends_on cask: "philberthfz/wine/gstreamer-runtime"
   depends_on :macos
 
   pkg "gstreamer-1.0-devel-#{version}-universal.pkg"
