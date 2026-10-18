@@ -3,8 +3,8 @@
 # Modifications: Re-enabled by removing upstream Gatekeeper `disable!` directive.
 
 cask "gstreamer-runtime" do
-  version "1.28.7"
-  sha256 "529fdf4a4027d942e59b5b3564f6400adaa008f63ce5f3fed4ffe35d73911994"
+  version "1.28.8"
+  sha256 "d371ab04a7632713626836c2fc234e863cc98484c74c473eba99b0fbd9b3a3fe"
 
   url "https://gstreamer.freedesktop.org/data/pkg/osx/#{version}/gstreamer-1.0-#{version}-universal.pkg"
   name "GStreamer runtime package"
