@@ -3,8 +3,8 @@
 # Modifications: Re-enabled by removing upstream Gatekeeper `disable!` directive.
 
 cask "wine@staging" do
-  version "11.18"
-  sha256 "b63704b91af269bc026a87f12bd297c4a50caaf570c322e600b6621ef918f127"
+  version "11.21"
+  sha256 "d7bcd5abf4df27aae397a7898aef074fea4a2e0b51e0a55aa9659517bbf9d452"
 
   # Current winehq packages are deprecated and these are packages from
   # the new maintainers that will eventually be pushed to Winehq.
